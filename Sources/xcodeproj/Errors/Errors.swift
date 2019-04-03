@@ -121,22 +121,6 @@ public enum PBXObjectError: Error, CustomStringConvertible {
     }
 }
 
-// MARK: - PBXProjEncoder
-
-/// PBXProjEncoder error.
-///
-/// - emptyProjectReference: the project reference is missing.
-enum PBXProjEncoderError: Error, CustomStringConvertible {
-    case emptyProjectReference
-
-    var description: String {
-        switch self {
-        case .emptyProjectReference:
-            return "PBXProj should contain a reference to the XcodeProj object that represents the project"
-        }
-    }
-}
-
 // MARK: - XCBreakpointList
 
 /// XCBreakpointList error.

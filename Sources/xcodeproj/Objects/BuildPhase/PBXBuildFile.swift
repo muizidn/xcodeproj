@@ -62,8 +62,7 @@ extension PBXBuildFile {
     /// Returns the name of the file the build file points to.
     ///
     /// - Returns: file name.
-    /// - Throws: an error if the name cannot be obtained.
-    func fileName() throws -> String? {
+    func fileName() -> String? {
         guard let fileElement: PBXFileElement = fileReference?.materialize() else { return nil }
         return fileElement.fileName()
     }
@@ -124,7 +123,7 @@ final class PBXBuildPhaseFile: PlistSerializable, Equatable {
         self.buildPhase = buildPhase
     }
 
-    func plistKeyAndValue(proj _: PBXProj, reference: String) throws -> (key: CommentedString, value: PlistValue) {
+    func plistKeyAndValue(proj _: PBXProj, reference: String) -> (key: CommentedString, value: PlistValue) {
         var dictionary: [CommentedString: PlistValue] = [:]
         dictionary["isa"] = .string(CommentedString(PBXBuildFile.isa))
         if let fileReference = buildFile.fileReference {
@@ -134,7 +133,7 @@ final class PBXBuildPhaseFile: PlistSerializable, Equatable {
         if let settings = buildFile.settings {
             dictionary["settings"] = settings.plist()
         }
-        let comment = try buildPhase.name().flatMap { "\(try buildFile.fileName() ?? "(null)") in \($0)" }
+        let comment = buildPhase.name().flatMap { "\(buildFile.fileName() ?? "(null)") in \($0)" }
         return (key: CommentedString(reference, comment: comment),
                 value: .dictionary(dictionary))
     }
