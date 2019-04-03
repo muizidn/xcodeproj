@@ -197,7 +197,7 @@ class PBXObjects: Equatable {
         case let object as PBXReferenceProxy: _referenceProxies[objectReference] = object
         case let object as PBXRezBuildPhase: _carbonResourcesBuildPhases[objectReference] = object
         case let object as PBXBuildRule: _buildRules[objectReference] = object
-        default: fatalError("Unhandled PBXObject type for \(object), this is likely a bug / todo")
+        default: preconditionFailure("unhandled PBXObject type for \(object), this is likely a bug")
         }
     }
 

@@ -25,22 +25,6 @@ public enum XCodeProjError: Error, CustomStringConvertible {
     }
 }
 
-// MARK: - XCSharedData
-
-/// XCSharedData errors.
-///
-/// - notFound: the share data hasn't been found.
-public enum XCSharedDataError: Error, CustomStringConvertible {
-    case notFound(path: Path)
-
-    public var description: String {
-        switch self {
-        case let .notFound(path):
-            return "xcshareddata not found at path \(path.string)"
-        }
-    }
-}
-
 // MARK: - XCWorkspace
 
 /// XCWorkspace Errors
@@ -153,52 +137,18 @@ enum PBXProjEncoderError: Error, CustomStringConvertible {
     }
 }
 
-// MARK: - PBXProj
-
-/// PBXProj error.
-///
-/// - notFound: the .pbxproj cannot be found at the given path.
-enum PBXProjError: Error, CustomStringConvertible {
-    case notFound(path: Path)
-    var description: String {
-        switch self {
-        case let .notFound(path):
-            return ".pbxproj not found at path \(path.string)"
-        }
-    }
-}
-
 // MARK: - XCBreakpointList
 
 /// XCBreakpointList error.
 ///
-/// - notFound: returned when the Breakpoints_v2.xcbkptlist cannot be found.
 /// - missing: returned when there's a property missing in the Breakpoints_v2.xcbkptlist.
 public enum XCBreakpointListError: Error, CustomStringConvertible {
-    case notFound(path: Path)
     case missing(property: String)
 
     public var description: String {
         switch self {
-        case let .notFound(path):
-            return "Breakpoints_v2.xcbkptlist couldn't be found at path \(path.string)"
         case let .missing(property):
             return "Property \(property) missing"
-        }
-    }
-}
-
-// MARK: - XCConfig
-
-/// XCConfig errors.
-///
-/// - notFound: returned when the configuration file couldn't be found.
-public enum XCConfigError: Error, CustomStringConvertible {
-    case notFound(path: Path)
-    public var description: String {
-        switch self {
-        case let .notFound(path):
-            return ".xcconfig file not found at \(path.string)"
         }
     }
 }
