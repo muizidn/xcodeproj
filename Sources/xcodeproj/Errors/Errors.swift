@@ -25,22 +25,6 @@ public enum XCodeProjError: Error, CustomStringConvertible {
     }
 }
 
-// MARK: - XCWorkspace
-
-/// XCWorkspace Errors
-///
-/// - notFound: the project cannot be found.
-public enum XCWorkspaceError: Error, CustomStringConvertible {
-    case notFound(path: Path)
-
-    public var description: String {
-        switch self {
-        case let .notFound(path):
-            return "The project cannot be found at \(path.string)"
-        }
-    }
-}
-
 // MARK: - XCWorkspaceData
 
 /// XCWorkspaceData Errors.
@@ -53,70 +37,6 @@ public enum XCWorkspaceDataError: Error, CustomStringConvertible {
         switch self {
         case let .notFound(path):
             return "Workspace not found at \(path.string)"
-        }
-    }
-}
-
-// MARK: - Xcodeproj Editing
-
-/// Xcodeproj editing errors.
-///
-/// - unexistingFile: the file doesn't exist.
-public enum XcodeprojEditingError: Error, CustomStringConvertible {
-    case unexistingFile(Path)
-
-    public var description: String {
-        switch self {
-        case let .unexistingFile(path):
-            return "The file at path \(path.string) doesn't exist"
-        }
-    }
-}
-
-// MARK: - Xcodeproj Writing
-
-/// Xcodeproj writing error.
-///
-/// - invalidType: the type that is being written is invalid.
-public enum XcodeprojWritingError: Error, CustomStringConvertible {
-    case invalidType(class: String, expected: String)
-
-    public var description: String {
-        switch self {
-        case let .invalidType(classType, expected):
-            return "Invalid type for object \(classType) that expects a \(expected)"
-        }
-    }
-}
-
-// MARK: - PBXObject
-
-/// PBXObject error.
-///
-/// - missingIsa: the isa attribute is missing.
-/// - unknownElement: the element that is being parsed is not supported.
-/// - objectsReleased: the project has been released or the object hasn't been added to any project.
-/// - objectNotFound: the object annot be found in the project.
-/// - orphaned: the object doesn't belong to any project.
-public enum PBXObjectError: Error, CustomStringConvertible {
-    case missingIsa
-    case unknownElement(String)
-    case objectsReleased
-    case objectNotFound(String)
-    case orphaned(type: String, reference: String)
-
-    public var description: String {
-        switch self {
-        case .missingIsa:
-            return "Isa property is missing."
-        case let .unknownElement(element):
-            return "The element \(element) is not supported."
-        case .objectsReleased:
-            return "The PBXObjects instance has been released before saving."
-        case let .objectNotFound(reference):
-            return "PBXObject with reference \"\(reference)\" not found."
-        case let .orphaned(type, reference):
-            return "Trying to use object \(type) with reference '\(reference)' before being added to any project"
         }
     }
 }
