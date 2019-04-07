@@ -24,6 +24,10 @@
 - Carthage integration https://github.com/tuist/xcodeproj/pull/416 by @pepibumur.
 - Relative path is wrong when referencing file outside of project folder https://github.com/tuist/xcodeproj/issues/423 by @damirdavletov
 
+### Removed
+
+- **Breaking** Reduced the amount of throwing from the public interface https://github.com/tuist/xcodeproj/pull/403 by @pepibumur.
+
 ## 6.7.0
 
 ### Changed
