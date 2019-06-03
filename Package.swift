@@ -5,7 +5,7 @@ import PackageDescription
 let package = Package(
     name: "XcodeProj",
     products: [
-        .library(name: "XcodeProj", targets: ["XcodeProj"]),
+        .library(name: "TuistXcodeProj", targets: ["TuistXcodeProj"]),
     ],
     dependencies: [
         .package(url: "https://github.com/tadija/AEXML", .upToNextMinor(from: "4.4.0")),
@@ -13,11 +13,12 @@ let package = Package(
         .package(url: "https://github.com/tuist/Shell", .upToNextMinor(from: "2.0.1")),
     ],
     targets: [
-        .target(name: "XcodeProj",
+        .target(name: "TuistXcodeProj",
                 dependencies: [
                     "PathKit",
                     "AEXML",
-                ]),
-        .testTarget(name: "XcodeProjTests", dependencies: ["XcodeProj", "Shell"]),
+                ],
+                path: "Sources/XcodeProj"),
+        .testTarget(name: "XcodeProjTests", dependencies: ["TuistXcodeProj", "Shell"]),
     ]
 )
